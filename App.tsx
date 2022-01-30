@@ -1,7 +1,9 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { View } from 'react-native';
+import { Provider } from 'react-redux';
+
+import confStore from './confStore';
 
 import HomeScreen from './screens/HomeScreen';
 import AddItemScreen from './screens/AddItemScreen';
@@ -15,10 +17,12 @@ const MainNavigator = createStackNavigator({
 
 const Navigation = createAppContainer(MainNavigator);
 
+const store = confStore();
+
 const App = () => (
-    <View>
+    <Provider store={store}>
       <Navigation />
-    </View>
+    </Provider>
 );
 
 export default App;
