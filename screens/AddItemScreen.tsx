@@ -1,10 +1,11 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
+import ItemForm from '../components/ItemForm';
 
 const AddItemScreen: React.FC<{}> = () => {
     return (
         <ScrollView>
-            <Text>Add Item Screen</Text>
+            <ItemForm />
         </ScrollView>
     );
 }
