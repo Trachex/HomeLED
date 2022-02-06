@@ -1,12 +1,24 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import AddItemLink from '../components/AddItemLink';
 
-const HomeScreen: React.FC<{}> = () => {
+
+const HomeScreen: React.FC<propTypes> = (props) => {
     return (
-        <ScrollView>
-            <Text>Home Screen</Text>
+        <ScrollView style={styles.view}>
+            <AddItemLink navigate={props.navigation.navigate}/>
         </ScrollView>
     );
 }
+
+interface propTypes {
+    navigation: any
+}
+
+const styles = StyleSheet.create({
+    view: {
+        
+    }
+});
 
 export default HomeScreen;
