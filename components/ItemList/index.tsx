@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ItemPosition from './ItemPosition';
 import { ApplicationState } from '../../store';
 import { ItemType } from '../../store/items/types';
+import styles from './styles';
 
 const ItemList: React.FC<propTypes> = ({ navigate, items }) => {
     const list = items.map((el: ItemType) => {
@@ -12,8 +13,8 @@ const ItemList: React.FC<propTypes> = ({ navigate, items }) => {
     });
 
     return (
-        <View>
-            { list.length ? list : <Text>Press + to add new item</Text>}
+        <View style={styles.view}>
+            { list.length ? list : <Text style={styles.text}>Press + to add new item</Text>}
         </View>
     );
 };
@@ -30,5 +31,3 @@ const mapStateToProps = (state: ApplicationState) => {
 };
 
 export default connect(mapStateToProps)(ItemList);
-
-// style
