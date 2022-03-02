@@ -3,7 +3,8 @@ import { ThunkAction } from 'redux-thunk';
 
 import {
     ItemsState,
-    AddItemType
+    AddItemType,
+    UpdateItemType
 } from './types';
 
 export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, ItemsState, void, any>> = 
@@ -20,6 +21,29 @@ export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, Ite
                     name,
                     ip,
                     pixels
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const UpdateItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void>, ItemsState, void, any>> = 
+    (oldName: string, name: string, ip: string, pixels: number) => {
+
+    return async (dispatch: Dispatch): Promise<UpdateItemType | void> => {
+
+        try {
+            // await (await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ pixels }) })).json();
+
+            return dispatch({
+                type: 'UPDATE_ITEM',
+                payload: {
+                    name,
+                    ip,
+                    pixels,
+                    oldName
                 }
             });
         } catch (error) {

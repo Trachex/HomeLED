@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native';
 import AddItemLink from '../components/AddItemLink';
 import ItemList from '../components/ItemList';
 
