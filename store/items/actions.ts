@@ -30,7 +30,7 @@ export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, Ite
 }
 
 export const UpdateItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void>, ItemsState, void, any>> = 
-    (oldName: string, name: string, ip: string, pixels: number) => {
+    (id: string, name: string, ip: string, pixels: number) => {
 
     return async (dispatch: Dispatch): Promise<UpdateItemType | void> => {
 
@@ -43,7 +43,7 @@ export const UpdateItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void
                     name,
                     ip,
                     pixels,
-                    oldName
+                    id
                 }
             });
         } catch (error) {
@@ -51,3 +51,25 @@ export const UpdateItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void
         }
     }
 }
+
+// export const DeleteItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void>, ItemsState, void, any>> = 
+//     (oldName: string, name: string, ip: string, pixels: number) => {
+
+//     return async (dispatch: Dispatch): Promise<UpdateItemType | void> => {
+
+//         try {
+//             
+//             return dispatch({
+//                 type: 'UPDATE_ITEM',
+//                 payload: {
+//                     name,
+//                     ip,
+//                     pixels,
+//                     oldName
+//                 }
+//             });
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
+// }

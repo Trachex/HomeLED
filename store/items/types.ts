@@ -4,24 +4,31 @@ export interface ItemsState {
     items: Array<ItemType>
 }
 
-export interface ItemType {
+export interface NewItemType {
     name: string,
     ip: string,
     pixels: number
 }
 
-export interface AddItemType extends Action {
-    type: string,
-    payload: ItemType
+export interface ItemType extends NewItemType {
+    id: string
 }
 
-export interface UpdateItemPayload extends ItemType {
-    oldName: string
+export interface AddItemType extends Action {
+    type: string,
+    payload: NewItemType
 }
 
 export interface UpdateItemType extends Action {
     type: string,
-    payload: UpdateItemPayload
+    payload: ItemType
 }
 
-export type AllActions = AddItemType | UpdateItemType;
+export interface DeleteItemType extends Action {
+    type: string,
+    payload: {
+        id: string
+    }
+}
+
+export type AllActions = AddItemType | UpdateItemType | DeleteItemType;

@@ -3,11 +3,11 @@ import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import * as actions from '../store/items/actions';
-import { ItemType } from '../store/items/types';
+import { NewItemType } from '../store/items/types';
 import ItemForm from '../components/ItemForm';
 
 const AddItemScreen: React.FC<propTypes> = ({ AddItem, navigation }) => {
-    const ApplyForm: Function = (obj: ItemType): void => {
+    const ApplyForm: Function = (obj: NewItemType): void => {
         const { name, ip, pixels } = obj;
         if (!name || !ip || !pixels) return;
 

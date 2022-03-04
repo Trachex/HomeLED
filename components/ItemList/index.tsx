@@ -9,7 +9,7 @@ import styles from './styles';
 
 const ItemList: React.FC<propTypes> = ({ navigate, items }) => {
     const list = items.map((el: ItemType) => {
-        return <ItemPosition key={el.name} navigate={navigate} name={el.name} />
+        return <ItemPosition key={el.id} navigate={navigate} itemId={el.id} name={el.name} />
     });
 
     return (
