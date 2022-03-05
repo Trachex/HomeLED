@@ -30,5 +30,3 @@ export interface DeleteItemType extends Action {
         id: string
     }
 }
-
-export type AllActions = AddItemType | UpdateItemType | DeleteItemType;
