@@ -7,7 +7,8 @@ import {
     UpdateItemType,
     DeleteItemType,
     UpdateDelayType,
-    UpdateBrightnessType
+    UpdateBrightnessType,
+    ChangeModeType
 } from './types';
 
 export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, ItemsState, void, any>> = 
@@ -99,6 +100,26 @@ export const UpdateBrightness: ActionCreator<ThunkAction<Promise<UpdateBrightnes
                 payload: {
                     id,
                     brightness
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const ChangeMode: ActionCreator<ThunkAction<Promise<ChangeModeType | void>, ItemsState, void, any>> = 
+    (id: string, mode: number, ip: string) => {
+    return async (dispatch: Dispatch): Promise<ChangeModeType | void> => {
+
+        try {
+            // await (await fetch(`${ip}/led/mode`, { method: 'POST', body: JSON.stringify({ mode }) })).json();
+
+            return dispatch({
+                type: 'CHANGE_MODE',
+                payload: {
+                    id,
+                    mode
                 }
             });
         } catch (error) {

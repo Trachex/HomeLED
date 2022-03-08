@@ -13,7 +13,8 @@ export interface NewItemType {
 export interface ItemType extends NewItemType {
     id: string,
     delay?: number,
-    brightness?: number
+    brightness?: number,
+    mode?: number
 }
 
 export interface AddItemType extends Action {
@@ -46,5 +47,13 @@ export interface UpdateBrightnessType extends Action {
     payload: {
         id: string,
         brightness: number
+    }
+}
+
+export interface ChangeModeType extends Action {
+    type: string,
+    payload: {
+        id: string,
+        mode: number
     }
 }

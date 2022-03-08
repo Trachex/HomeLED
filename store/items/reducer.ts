@@ -14,7 +14,8 @@ const reducer: Reducer<ItemsState, any> = (state: ItemsState = initialState, act
             items.push(Object.assign({ 
                 id: uuidv4(),
                 delay: 1,
-                brightness: 100
+                brightness: 100,
+                mode: 0
             }, action.payload));
             return { ...state, items };
             
@@ -46,6 +47,13 @@ const reducer: Reducer<ItemsState, any> = (state: ItemsState = initialState, act
             const brightnessIndex = brightnessItems.findIndex((el) => { return el.id === action.payload.id });
             brightnessItems[brightnessIndex].brightness = action.payload.brightness;
             return { ...state, items: brightnessItems };
+
+        break;
+        case 'CHANGE_MODE':
+            const modeItems = state.items.slice(0);
+            const modeIndex = modeItems.findIndex((el) => { return el.id === action.payload.id });
+            modeItems[modeIndex].mode = action.payload.mode;
+            return { ...state, items: modeItems };
 
         break;
         default:

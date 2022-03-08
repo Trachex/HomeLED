@@ -6,8 +6,9 @@ import * as actions from '../store/items/actions';
 import { ApplicationState } from '../store';
 import { ItemType } from '../store/items/types';
 import Slider from '../components/Slider';
+import ModeSelect from '../components/ModeSelect';
 
-const ItemScreen: React.FC<propTypes> = ({ navigation, items, UpdateDelay, UpdateBrightness }) => {
+const ItemScreen: React.FC<propTypes> = ({ navigation, items, UpdateDelay, UpdateBrightness, ChangeMode }) => {
     const currItem = items.find((el: ItemType) => {
         return el.id === navigation.getParam('id');
     });
@@ -20,11 +21,16 @@ const ItemScreen: React.FC<propTypes> = ({ navigation, items, UpdateDelay, Updat
         UpdateBrightness(currItem?.id, num, currItem?.ip);
     };
 
+    const onMode = (num: number) => {
+        ChangeMode(currItem?.id, num, currItem?.ip);
+    };
+
     return (
         <ScrollView>
             <Text style={styles.title} >{currItem?.name || 'Unfound item screen'}</Text>
             <Slider sliderName={'Delay'} minValue={1} maxValue={60} onChange={onDelay} sliderValue={currItem?.delay || 1} />
             <Slider sliderName={'Brightness'} minValue={1} maxValue={100} onChange={onBrightness} sliderValue={currItem?.brightness || 100} />
+            <ModeSelect selected={currItem?.mode || 0} onChange={onMode} />
         </ScrollView>
     );
 }
@@ -33,7 +39,8 @@ interface propTypes {
     navigation: any,
     items: Array<ItemType>,
     UpdateDelay: Function,
-    UpdateBrightness: Function
+    UpdateBrightness: Function,
+    ChangeMode: Function
 };
 
 const styles = StyleSheet.create({
