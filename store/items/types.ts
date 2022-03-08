@@ -11,7 +11,9 @@ export interface NewItemType {
 }
 
 export interface ItemType extends NewItemType {
-    id: string
+    id: string,
+    delay?: number,
+    brightness?: number
 }
 
 export interface AddItemType extends Action {
@@ -28,5 +30,21 @@ export interface DeleteItemType extends Action {
     type: string,
     payload: {
         id: string
+    }
+}
+
+export interface UpdateDelayType extends Action {
+    type: string,
+    payload: {
+        id: string,
+        delay: number
+    }
+}
+
+export interface UpdateBrightnessType extends Action {
+    type: string,
+    payload: {
+        id: string,
+        brightness: number
     }
 }

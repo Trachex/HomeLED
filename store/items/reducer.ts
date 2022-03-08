@@ -11,7 +11,11 @@ const reducer: Reducer<ItemsState, any> = (state: ItemsState = initialState, act
     switch (action.type) {
         case 'ADD_ITEM':
             const items = state.items.slice(0);
-            items.push(Object.assign({ id: uuidv4() }, action.payload));
+            items.push(Object.assign({ 
+                id: uuidv4(),
+                delay: 1,
+                brightness: 100
+            }, action.payload));
             return { ...state, items };
             
         break;
@@ -28,6 +32,20 @@ const reducer: Reducer<ItemsState, any> = (state: ItemsState = initialState, act
         case 'DELETE_ITEM':
             const filteredItems = state.items.filter((el) => { el.id !== action.payload.id });
             return { ...state, items: filteredItems };
+
+        break;
+        case 'UPDATE_DELAY':
+            const delayItems = state.items.slice(0);
+            const delayIndex = delayItems.findIndex((el) => { return el.id === action.payload.id });
+            delayItems[delayIndex].delay = action.payload.delay;
+            return { ...state, items: delayItems };
+
+        break;
+        case 'UPDATE_BRIGHTNESS':
+            const brightnessItems = state.items.slice(0);
+            const brightnessIndex = brightnessItems.findIndex((el) => { return el.id === action.payload.id });
+            brightnessItems[brightnessIndex].brightness = action.payload.brightness;
+            return { ...state, items: brightnessItems };
 
         break;
         default:

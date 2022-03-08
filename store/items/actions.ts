@@ -5,7 +5,9 @@ import {
     ItemsState,
     AddItemType,
     UpdateItemType,
-    DeleteItemType
+    DeleteItemType,
+    UpdateDelayType,
+    UpdateBrightnessType
 } from './types';
 
 export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, ItemsState, void, any>> = 
@@ -62,5 +64,45 @@ export const DeleteItem: ActionCreator<ThunkAction<Promise<DeleteItemType | void
                     id
                 }
             });
+    }
+}
+
+export const UpdateDelay: ActionCreator<ThunkAction<Promise<UpdateDelayType | void>, ItemsState, void, any>> = 
+    (id: string, delay: number, ip: string) => {
+    return async (dispatch: Dispatch): Promise<UpdateDelayType | void> => {
+
+        try {
+            // await (await fetch(`${ip}/led/delay`, { method: 'POST', body: JSON.stringify({ delay }) })).json();
+
+            return dispatch({
+                type: 'UPDATE_DELAY',
+                payload: {
+                    id,
+                    delay
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+export const UpdateBrightness: ActionCreator<ThunkAction<Promise<UpdateBrightnessType | void>, ItemsState, void, any>> = 
+    (id: string, brightness: number, ip: string) => {
+    return async (dispatch: Dispatch): Promise<UpdateBrightnessType | void> => {
+
+        try {
+            // await (await fetch(`${ip}/led/brightness`, { method: 'POST', body: JSON.stringify({ brightness }) })).json();
+
+            return dispatch({
+                type: 'UPDATE_BRIGHTNESS',
+                payload: {
+                    id,
+                    brightness
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
