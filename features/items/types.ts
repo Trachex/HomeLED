@@ -8,7 +8,8 @@ export interface ItemType {
     ip: string,
     delay: number,
     brightness: number,
-    mode: number
+    mode: number,
+    ledCount: number
 }
 
 export interface IAddItem {
@@ -21,5 +22,6 @@ export interface IAddItemF {
     ip: string,
     delay: number,
     brightness: number,
-    mode: number
+    mode: number,
+    ledCount: number
 }

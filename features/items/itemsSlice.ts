@@ -11,7 +11,7 @@ const initialState: ItemsState = {
 }
 
 export const addItem = createAsyncThunk<IAddItemF, IAddItem>('api', async ({ name, ip }) => {
-    const response = await (await fetch(`${ip}/`, { method: 'GET' })).json();
+    const response = await (await fetch(`${ip}/led/state`, { method: 'GET' })).json();
     return {...response, name, ip};
 })
 
