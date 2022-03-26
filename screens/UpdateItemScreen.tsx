@@ -1,24 +1,25 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { connect } from 'react-redux';
 
-import * as actions from '../store/items/actions';
-import { NewItemType, ItemType } from '../store/items/types';
-import { ApplicationState } from '../store';
-import ItemForm from '../components/ItemForm';
+import UpdateItemForm from '../components/UpdateItemForm';
 import DeleteItemIcon from '../components/DeleteItemIcon';
+import { ItemType, IUpdateItem } from '../features/items/types';
+import { updateItem, deleteItem } from '../features/items/itemsSlice';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
-const UpdateItemScreen: React.FC<propTypes> = ({ navigation, items, UpdateItem, DeleteItem }) => {
-    const ApplyUpdate: Function = (obj: NewItemType): void => {
-        const { name, ip, pixels } = obj;
-        if (!name || !ip || !pixels) return;
+const UpdateItemScreen: React.FC<propTypes> = ({ navigation }) => {
+    const dispatch = useAppDispatch();
+    const items = useAppSelector((state) => state.items.items);
 
-        UpdateItem(navigation.getParam('id'), name, ip, pixels);
+    const ApplyUpdate: Function = (obj: IUpdateItem): void => {
+        if (!obj.ip || !obj.ledCount || !obj.name) return;
+
+        dispatch(updateItem(obj));
         navigation.navigate("Home");
     };
 
     const Delete: Function = (): void => {
-        DeleteItem(navigation.getParam('id'));
+        dispatch(deleteItem(navigation.getParam('id')));
         navigation.navigate("Home");
     };
 
@@ -30,22 +31,13 @@ const UpdateItemScreen: React.FC<propTypes> = ({ navigation, items, UpdateItem, 
     return (
         <ScrollView>
             <DeleteItemIcon deleteFn={Delete}/>
-            <ItemForm submit={ApplyUpdate} defaultsObj={currItem} />
+            <UpdateItemForm submit={ApplyUpdate} defaultsObj={currItem} />
         </ScrollView>
     );
 }
 
 interface propTypes {
-    UpdateItem: Function,
-    DeleteItem: Function,
-    navigation: any,
-    items: Array<ItemType>
+    navigation: any
 };
 
-const mapStateToProps = (state: ApplicationState) => {
-    return {
-        items: state.items.items
-    }
-}
-
-export default connect(mapStateToProps, actions)(UpdateItemScreen);
+export default UpdateItemScreen;

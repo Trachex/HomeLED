@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
 
 import ItemPosition from './ItemPosition';
-import { ApplicationState } from '../../store';
-import { ItemType } from '../../store/items/types';
+import { useAppSelector } from '../../app/hooks';
+import { ItemType } from '../../features/items/types';
 import styles from './styles';
 
-const ItemList: React.FC<propTypes> = ({ navigate, items }) => {
+const ItemList: React.FC<propTypes> = ({ navigate }) => {
+    const items = useAppSelector((state) => state.items.items);
+
     const list = items.map((el: ItemType) => {
-        return <ItemPosition key={el.id} navigate={navigate} itemId={el.id} name={el.name} />
+        return <ItemPosition key={el.id} navigate={navigate} id={el.id} name={el.name} />
     });
 
     return (
@@ -20,14 +21,7 @@ const ItemList: React.FC<propTypes> = ({ navigate, items }) => {
 };
 
 interface propTypes {
-    navigate: any,
-    items: Array<ItemType>
+    navigate: any
 };
 
-const mapStateToProps = (state: ApplicationState) => {
-    return {
-        items: state.items.items
-    }
-};
-
-export default connect(mapStateToProps)(ItemList);
+export default ItemList;

@@ -4,14 +4,14 @@ import { TouchableHighlight, Text, View } from 'react-native';
 import UpdateItemLink from './UpdateItemLink';
 import styles from './styles';
 
-const ItemPosition: React.FC<propTypes> = ({ navigate, itemId, name }) => {
+const ItemPosition: React.FC<propTypes> = ({ navigate, id, name }) => {
     
     return (
         <View style={styles.container}>
-            <TouchableHighlight onPress={() => { navigate('Item', { id: itemId }) }} activeOpacity={0.6} underlayColor="#828282"> 
+            <TouchableHighlight onPress={() => { navigate('Item', { id }) }} activeOpacity={0.6} underlayColor="#828282"> 
                 <Text style={styles.text}>{ name }</Text>
             </TouchableHighlight>
-            <UpdateItemLink navigate={navigate} itemId={itemId} />
+            <UpdateItemLink navigate={navigate} id={id} />
         </View>
     );
 };
@@ -19,7 +19,7 @@ const ItemPosition: React.FC<propTypes> = ({ navigate, itemId, name }) => {
 interface propTypes {
     navigate: any,
     name: string,
-    itemId: string
+    id: string
 };
 
 export default ItemPosition;

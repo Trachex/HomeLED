@@ -1,34 +1,29 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { connect } from 'react-redux';
 
-import * as actions from '../store/items/actions';
-import { NewItemType } from '../store/items/types';
-import ItemForm from '../components/ItemForm';
+import AddItemForm from '../components/AddItemForm';
+import { IAddItem } from '../features/items/types';
+import { addItem } from '../features/items/itemsSlice';
+import { useAppDispatch } from '../app/hooks';
 
-const AddItemScreen: React.FC<propTypes> = ({ AddItem, navigation }) => {
-    const ApplyForm: Function = (obj: NewItemType): void => {
-        const { name, ip, pixels } = obj;
-        if (!name || !ip || !pixels) return;
+const AddItemScreen: React.FC<propTypes> = ({ navigation }) => {
+    const dispatch = useAppDispatch();
 
-        AddItem(name, ip, pixels);
+    const ApplyForm: Function = (obj: IAddItem): void => {
+        if (!obj.name || !obj.ip) return;
+        dispatch(addItem(obj));
         navigation.navigate("Home");
     };
     
     return (
         <ScrollView>
-            <ItemForm submit={ApplyForm} />
+            <AddItemForm submit={ApplyForm} />
         </ScrollView>
     );
 }
 
 interface propTypes {
-    AddItem: Function,
     navigation: any
 }
 
-const mapStateToProps = () => {
-    return {}
-}
-
-export default connect(mapStateToProps, actions)(AddItemScreen);
+export default AddItemScreen;
