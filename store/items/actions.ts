@@ -17,7 +17,7 @@ export const AddItem: ActionCreator<ThunkAction<Promise<AddItemType | void>, Ite
     return async (dispatch: Dispatch): Promise<AddItemType | void> => {
 
         try {
-            // await (await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ pixels }) })).json();
+            await (await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ amount: pixels }) })).json();
 
             return dispatch({
                 type: 'ADD_ITEM',
@@ -39,7 +39,7 @@ export const UpdateItem: ActionCreator<ThunkAction<Promise<UpdateItemType | void
     return async (dispatch: Dispatch): Promise<UpdateItemType | void> => {
 
         try {
-            // await (await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ pixels }) })).json();
+            await (await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ amount: pixels }) })).json();
 
             return dispatch({
                 type: 'UPDATE_ITEM',
@@ -73,7 +73,7 @@ export const UpdateDelay: ActionCreator<ThunkAction<Promise<UpdateDelayType | vo
     return async (dispatch: Dispatch): Promise<UpdateDelayType | void> => {
 
         try {
-            // await (await fetch(`${ip}/led/delay`, { method: 'POST', body: JSON.stringify({ delay }) })).json();
+            await (await fetch(`${ip}/led/delay`, { method: 'POST', body: JSON.stringify({ delay }) })).json();
 
             return dispatch({
                 type: 'UPDATE_DELAY',
@@ -93,7 +93,7 @@ export const UpdateBrightness: ActionCreator<ThunkAction<Promise<UpdateBrightnes
     return async (dispatch: Dispatch): Promise<UpdateBrightnessType | void> => {
 
         try {
-            // await (await fetch(`${ip}/led/brightness`, { method: 'POST', body: JSON.stringify({ brightness }) })).json();
+            await (await fetch(`${ip}/led/brightness`, { method: 'POST', body: JSON.stringify({ brightness }) })).json();
 
             return dispatch({
                 type: 'UPDATE_BRIGHTNESS',
@@ -113,7 +113,7 @@ export const ChangeMode: ActionCreator<ThunkAction<Promise<ChangeModeType | void
     return async (dispatch: Dispatch): Promise<ChangeModeType | void> => {
 
         try {
-            // await (await fetch(`${ip}/led/mode`, { method: 'POST', body: JSON.stringify({ mode }) })).json();
+            await (await fetch(`${ip}/led/mode`, { method: 'POST', body: JSON.stringify({ mode }) })).json();
 
             return dispatch({
                 type: 'CHANGE_MODE',
