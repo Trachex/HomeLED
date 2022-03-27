@@ -4,12 +4,12 @@ import { Text } from 'react-native';
 
 import styles from './styles';
 
-const ModeSelect: React.FC<propTypes> = ({ selected, onChange }) => {
+const ModeSelect: React.FC<propTypes> = ({ selected, onChange, buttons }) => {
   return (
     <>
         <Text style={styles.subHeader}>Modes:</Text>
         <ButtonGroup
-            buttons={['Mono', 'Rainbow']}
+            buttons={buttons}
             selectedIndex={selected}
             onPress={(value) => {
                 onChange(value);
@@ -25,7 +25,8 @@ const ModeSelect: React.FC<propTypes> = ({ selected, onChange }) => {
 
 interface propTypes {
     selected: number,
-    onChange: Function
+    onChange: Function,
+    buttons: Array<string>
 };
 
 export default ModeSelect;
