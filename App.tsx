@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import confStore from './confStore';
+import { store } from './app/store';
 
 import HomeScreen from './screens/HomeScreen';
 import AddItemScreen from './screens/AddItemScreen';
@@ -19,8 +19,6 @@ const MainNavigator = createStackNavigator({
 });
 
 const Navigation = createAppContainer(MainNavigator);
-
-const store = confStore();
 
 const App = () => (
     <Provider store={store}>

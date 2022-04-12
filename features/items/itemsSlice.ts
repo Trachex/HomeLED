@@ -17,28 +17,29 @@ const initialState: ItemsState = {
     items: []
 }
 
-export const addItem = createAsyncThunk<IAddItemF, IAddItem>('api', async ({ name, ip }) => {
-    const response = await (await fetch(`${ip}/led/state`, { method: 'GET' })).json();
+export const addItem = createAsyncThunk<IAddItemF, IAddItem>('api/itemAdd', async ({ name, ip }) => {
+    const response = await (await fetch(`http://${ip}/led/state`, { method: 'GET' })).json();
+    
     return { ...response, name, ip };
 });
 
-export const changeDelay = createAsyncThunk<IChangeDelayF, IChangeDelay>('api', async ({ id, delay, ip }) => {
-    await fetch(`${ip}/led/delay`, { method: 'POST', body: JSON.stringify({ delay }) });
+export const changeDelay = createAsyncThunk<IChangeDelayF, IChangeDelay>('api/delay', async ({ id, delay, ip }) => {
+    await fetch(`http://${ip}/led/delay`, { method: 'POST', body: JSON.stringify({ delay }), headers: { 'Content-Type': 'application/json' } });
     return { id, delay };
 });
 
-export const changeBrightness = createAsyncThunk<IChangeBrightnessF, IChangeBrightness>('api', async ({ id, brightness, ip }) => {
-    await fetch(`${ip}/led/brightness`, { method: 'POST', body: JSON.stringify({ brightness }) });
+export const changeBrightness = createAsyncThunk<IChangeBrightnessF, IChangeBrightness>('api/brightness', async ({ id, brightness, ip }) => {
+    await fetch(`http://${ip}/led/brightness`, { method: 'POST', body: JSON.stringify({ brightness }), headers: { 'Content-Type': 'application/json' } });
     return { id, brightness } ;
 });
 
-export const changeMode = createAsyncThunk<IChangeModeF, IChangeMode>('api', async ({ id, mode, ip }) => {
-    await fetch(`${ip}/led/mode`, { method: 'POST', body: JSON.stringify({ mode }) });
+export const changeMode = createAsyncThunk<IChangeModeF, IChangeMode>('api/mode', async ({ id, mode, ip }) => {
+    await fetch(`http://${ip}/led/mode`, { method: 'POST', body: JSON.stringify({ mode }), headers: { 'Content-Type': 'application/json' } });
     return { id, mode } ;
 });
 
-export const updateItem = createAsyncThunk<IUpdateItem, IUpdateItem>('api', async ({ id, ip, name, ledCount }) => {
-    await fetch(`${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ amount: ledCount }) });
+export const updateItem = createAsyncThunk<IUpdateItem, IUpdateItem>('api/itemUpdate', async ({ id, ip, name, ledCount }) => {
+    await fetch(`http://${ip}/led/amount`, { method: 'POST', body: JSON.stringify({ amount: ledCount }), headers: { 'Content-Type': 'application/json' } });
     return { id, ledCount, name, ip };
 });
 
