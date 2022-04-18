@@ -22,46 +22,28 @@ const ItemScreen: React.FC<propTypes> = ({ navigation }) => {
         }));
     };
 
-    const modesArr = [{
-        name: 'Mono',
-        sliders: [{
-            sliderName: 'Delay',
-            minValue: 1,
-            maxValue: 60,
-            sliderValue: currItem?.delay || 1,
-            onChange(delay: number) {
-                dispatch(changeDelay({
-                    id: navigation.getParam('id'),
-                    delay,
-                    ip: currItem?.ip || ''
-                }));
-            }
-        },
-        {
-            sliderName: 'Brightness',
-            minValue: 1,
-            maxValue: 255,
-            sliderValue: currItem?.brightness || 255,
-            onChange(brightness: number) {
-                dispatch(changeBrightness({
-                    id: navigation.getParam('id'),
-                    brightness,
-                    ip: currItem?.ip || ''
-                }));
-            }
-        }]
-    }];
-    const buttons = modesArr.map(el => el.name);
-    const currMode = modesArr[currItem?.mode || 0];
-    const sliders = currMode.sliders.map(el => {
-        <Slider sliderName={el.sliderName} minValue={el.minValue} maxValue={el.maxValue} onChange={el.onChange} sliderValue={el.sliderValue} />
-    });
+    const onDelay = (delay: number) => {
+        dispatch(changeDelay({
+            id: navigation.getParam('id'),
+            delay,
+            ip: currItem?.ip || ''
+        }));
+    }
+    
+    const onBrightness = (brightness: number) => {
+        dispatch(changeBrightness({
+            id: navigation.getParam('id'),
+            brightness,
+            ip: currItem?.ip || ''
+        }));
+    }
 
     return (
         <ScrollView>
             <Text style={styles.title} >{currItem?.name || 'Unfound item screen'}</Text>
-            {sliders}
-            <ModeSelect buttons={buttons} selected={currItem?.mode || 0} onChange={onMode} />
+            <Slider sliderName={'Delay'} minValue={1} maxValue={60} onChange={onDelay} sliderValue={currItem?.delay || 1} />
+            <Slider sliderName={'Brightness'} minValue={1} maxValue={255} onChange={onBrightness} sliderValue={currItem?.brightness || 255} />
+            <ModeSelect buttons={['Rainbow']} selected={currItem?.mode || 0} onChange={onMode} />
         </ScrollView>
     );
 }
