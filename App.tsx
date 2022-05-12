@@ -4,8 +4,9 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PersistGate } from 'redux-persist/integration/react'
 
-import { store } from './app/store';
+import { store, persistor } from './app/store';
 
 import HomeScreen from './screens/HomeScreen';
 import AddItemScreen from './screens/AddItemScreen';
@@ -23,9 +24,11 @@ const Navigation = createAppContainer(MainNavigator);
 
 const App = () => (
     <Provider store={store}>
-      <SafeAreaProvider>
-        <Navigation />
-      </SafeAreaProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider>
+          <Navigation />
+        </SafeAreaProvider>
+        </PersistGate>
     </Provider>
 );
 
