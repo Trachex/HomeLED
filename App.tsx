@@ -13,11 +13,16 @@ import AddItemScreen from './screens/AddItemScreen';
 import ItemScreen from './screens/ItemScreen';
 import UpdateItemScreen from './screens/UpdateItemScreen';
 
+const headerOpt = {
+  headerStyle: { backgroundColor: "#6200EE" },
+  headerTintColor: "#FFF"
+};
+
 const MainNavigator = createStackNavigator({
-  Home: { screen: HomeScreen },
-  AddItem: { screen: AddItemScreen },
-  Item: { screen: ItemScreen },
-  UpdateItem: { screen: UpdateItemScreen }
+  Home: { screen: HomeScreen, navigationOptions: headerOpt },
+  AddItem: { screen: AddItemScreen, navigationOptions: { title: "Add a light", ...headerOpt } },
+  Item: { screen: ItemScreen, navigationOptions: headerOpt },
+  UpdateItem: { screen: UpdateItemScreen, navigationOptions: { title: "Configure light", ...headerOpt } }
 });
 
 const Navigation = createAppContainer(MainNavigator);
@@ -28,7 +33,7 @@ const App = () => (
         <SafeAreaProvider>
           <Navigation />
         </SafeAreaProvider>
-        </PersistGate>
+      </PersistGate>
     </Provider>
 );
 

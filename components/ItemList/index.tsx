@@ -5,6 +5,7 @@ import ItemPosition from './ItemPosition';
 import { useAppSelector } from '../../app/hooks';
 import { ItemType } from '../../features/items/types';
 import styles from './styles';
+import NoItems from './NoItems';
 
 const ItemList: React.FC<propTypes> = ({ navigate }) => {
     const items = useAppSelector((state) => state.items.items);
@@ -15,7 +16,7 @@ const ItemList: React.FC<propTypes> = ({ navigate }) => {
 
     return (
         <View style={styles.view}>
-            { list.length ? list : <Text style={styles.text}>Press + to add new item</Text>}
+            { list.length ? list : <NoItems />}
         </View>
     );
 };

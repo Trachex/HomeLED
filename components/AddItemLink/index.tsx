@@ -4,7 +4,7 @@ import styles from './styles';
 
 const AddItemLink: React.FC<propTypes> = (props) => {
     return (
-        <TouchableHighlight onPress={() => { props.navigate("AddItem") }} style={styles.button} activeOpacity={0.6} underlayColor="#9c9825">
+        <TouchableHighlight onPress={() => { props.navigate("AddItem") }} style={styles.button} activeOpacity={0.6} underlayColor="#5202c2">
                 <Text style={styles.text}>+</Text>
         </TouchableHighlight>
     );
