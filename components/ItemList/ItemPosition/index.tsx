@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight, Text, View } from 'react-native';
+import { ListItem } from "@react-native-material/core";
 
 import UpdateItemLink from './UpdateItemLink';
 import styles from './styles';
@@ -7,12 +7,11 @@ import styles from './styles';
 const ItemPosition: React.FC<propTypes> = ({ navigate, id, name }) => {
     
     return (
-        <View style={styles.container}>
-            <TouchableHighlight onPress={() => { navigate('Item', { id }) }} activeOpacity={0.6} underlayColor="#828282"> 
-                <Text style={styles.text}>{ name }</Text>
-            </TouchableHighlight>
-            <UpdateItemLink navigate={navigate} id={id} />
-        </View>
+        <ListItem 
+            title={name} 
+            onPress={() => { navigate('Item', { id }) }} 
+            trailing={<UpdateItemLink navigate={navigate} id={id} />} 
+        />
     );
 };
 

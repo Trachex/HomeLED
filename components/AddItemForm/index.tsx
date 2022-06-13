@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableHighlight, Text, TextInput, View } from 'react-native';
+import { TextInput, Button, Surface } from "@react-native-material/core";
 
 import styles from './styles';
 
@@ -8,15 +8,12 @@ const ItemForm: React.FC<propTypes> = ({ submit }) => {
     const [ip, setIp] = useState<string>('');
 
     return (
-        <View style={styles.container}>
-            <TextInput placeholder='Name' value={name} onChangeText={setName} autoCompleteType="off" style={styles.input} />
+        <Surface style={styles.container}>
+            <TextInput label='Name' value={name} onChangeText={setName} autoComplete="off" style={styles.input} variant="outlined" />
+            <TextInput label='Ip address' value={ip} onChangeText={setIp} keyboardType="numeric" style={styles.input} variant="outlined" />
 
-            <TextInput placeholder='Ip address' value={ip} onChangeText={setIp} keyboardType="numeric" style={styles.input} />
-
-            <TouchableHighlight onPress={() => submit({ name, ip })} style={styles.button} activeOpacity={0.6} underlayColor="#9c9825">
-                <Text style={styles.text}>Submit</Text>
-            </TouchableHighlight>
-        </View>
+            <Button onPress={() => submit({ name, ip })} title="Save Light" style={styles.button}/>
+        </Surface>
     );
 }
 
