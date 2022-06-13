@@ -17,7 +17,7 @@ const ItemForm: React.FC<propTypes> = ({ submit, defaultsObj }) => {
 
     return (
         <View style={styles.container}>
-            <TextInput placeholder='Name' value={name} onChangeText={setName} autoCompleteType="off" style={styles.input} />
+            <TextInput placeholder='Name' value={name} onChangeText={setName} autoComplete="off" style={styles.input} />
 
             <TextInput placeholder='Ip address' value={ip} onChangeText={setIp} keyboardType="numeric" style={styles.input} />
 
