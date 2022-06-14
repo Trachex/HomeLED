@@ -21,7 +21,7 @@ const headerOpt = {
 const MainNavigator = createStackNavigator({
   Home: { screen: HomeScreen, navigationOptions: headerOpt },
   AddItem: { screen: AddItemScreen, navigationOptions: { title: "Add a light", ...headerOpt } },
-  Item: { screen: ItemScreen, navigationOptions: headerOpt },
+  Item: { screen: ItemScreen, navigationOptions: { title: "Control Panel", ...headerOpt } },
   UpdateItem: { screen: UpdateItemScreen, navigationOptions: { title: "Configure light", ...headerOpt } }
 });
 

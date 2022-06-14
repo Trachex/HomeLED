@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableHighlight, Text, TextInput, View } from 'react-native';
+import { TextInput, Button, Surface } from "@react-native-material/core";
 
 import { ItemType } from '../../features/items/types';
 import styles from './styles';
@@ -16,18 +16,13 @@ const ItemForm: React.FC<propTypes> = ({ submit, defaultsObj }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <TextInput placeholder='Name' value={name} onChangeText={setName} autoComplete="off" style={styles.input} />
+        <Surface style={styles.container} >
+            <TextInput label='Name' value={name} onChangeText={setName} autoComplete="off" style={styles.input} variant="outlined" />
+            <TextInput label='Ip address' value={ip} onChangeText={setIp} keyboardType="numeric" style={styles.input} variant="outlined" />
+            <TextInput label='Pixel Count' value={ledCount.toString()} onChangeText={changePixels} keyboardType="numeric" style={styles.pixelInput} variant="outlined" />
 
-            <TextInput placeholder='Ip address' value={ip} onChangeText={setIp} keyboardType="numeric" style={styles.input} />
-
-            <Text style={styles.pixelText}>Pixel count:</Text>
-            <TextInput value={ledCount.toString()} onChangeText={changePixels} keyboardType="numeric" style={styles.pixelInput} />
-
-            <TouchableHighlight onPress={() => submit({ name, ip, ledCount, id: defaultsObj?.id })} style={styles.button} activeOpacity={0.6} underlayColor="#9c9825">
-                <Text style={styles.text}>Submit</Text>
-            </TouchableHighlight>
-        </View>
+            <Button onPress={() => submit({ name, ip, ledCount, id: defaultsObj?.id })} title="Save" style={styles.button}/>
+        </Surface>
     );
 }
 

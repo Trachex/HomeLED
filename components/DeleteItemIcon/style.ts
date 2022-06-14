@@ -5,7 +5,6 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: "center",
         flexDirection: "row",
-        justifyContent: "flex-end",
-        padding: 10
+        justifyContent: "flex-end"
     }
 });
