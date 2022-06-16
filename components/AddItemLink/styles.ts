@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { withTheme } from 'react-native-elements';
 
 export default StyleSheet.create({
     button: {

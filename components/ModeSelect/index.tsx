@@ -1,13 +1,11 @@
 import React from 'react'
 import { ButtonGroup } from 'react-native-elements'
-import { Text } from 'react-native';
 
 import styles from './styles';
 
 const ModeSelect: React.FC<propTypes> = ({ selected, onChange, buttons }) => {
   return (
     <>
-        <Text style={styles.subHeader}>Modes:</Text>
         <ButtonGroup
             buttons={buttons}
             selectedIndex={selected}
@@ -15,8 +13,10 @@ const ModeSelect: React.FC<propTypes> = ({ selected, onChange, buttons }) => {
                 onChange(value);
             }}
             containerStyle={styles.containerStyle}
+			textStyle={styles.textStyle}
             selectedButtonStyle={styles.selectedButtonStyle}
-            textStyle={styles.textStyle}
+			selectedTextStyle={styles.selectedTextStyle}
+			buttonStyle={styles.buttonStyle}
         />
     
     </>

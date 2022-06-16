@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { Surface } from "@react-native-material/core";
 
 import Slider from '../components/Slider';
 import ModeSelect from '../components/ModeSelect';
@@ -40,10 +41,11 @@ const ItemScreen: React.FC<propTypes> = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <Text style={styles.title} >{currItem?.name || 'Unfound item screen'}</Text>
-            <Slider sliderName={'Delay'} minValue={1} maxValue={60} onChange={onDelay} sliderValue={currItem?.delay || 1} />
-            <Slider sliderName={'Brightness'} minValue={1} maxValue={255} onChange={onBrightness} sliderValue={currItem?.brightness || 255} />
-            <ModeSelect buttons={['Rainbow']} selected={currItem?.mode || 0} onChange={onMode} />
+            <ModeSelect buttons={['Mono']} selected={currItem?.mode || 0} onChange={onMode} />
+            <Surface style={styles.surface} elevation={2}>
+                <Slider sliderName={'Delay'} minValue={1} maxValue={60} onChange={onDelay} sliderValue={currItem?.delay || 1} />
+                <Slider sliderName={'Brightness'} minValue={1} maxValue={255} onChange={onBrightness} sliderValue={currItem?.brightness || 255} />
+            </Surface>
         </ScrollView>
     );
 }
@@ -53,11 +55,10 @@ interface propTypes {
 };
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        fontWeight: '600',
-        marginVertical: 10,
-        textAlign: 'center'
+    surface: {
+      width: '96%',
+      marginHorizontal: Dimensions.get('window').width * 0.02,
     }
 });
+
 export default ItemScreen;
